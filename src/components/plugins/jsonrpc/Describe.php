@@ -36,7 +36,8 @@ class Describe extends Plugin implements IStageJsonRpcOperationRun
             /**
              * @var IJsonRpcOperation[] $ops
              */
-            $ops = $this->jsonRpcOperations()->all([]);
+            $ops = $this->jsonRpcOperations()->all([IJsonRpcOperation::FILED__VERSION => $this->getVersion()]);
+
             foreach ($ops as $op) {
                 $result[$op->getName()] = $op->getSpecs();
             }
@@ -45,5 +46,15 @@ class Describe extends Plugin implements IStageJsonRpcOperationRun
         }
 
         return $this->successResponse($this->getJsonRpcRequest()->getId(), $result);
+    }
+
+    /**
+     * @return int
+     */
+    protected function getVersion(): int
+    {
+        $args = $this->getArguments();
+
+        return $args['version'] ?? 0;
     }
 }

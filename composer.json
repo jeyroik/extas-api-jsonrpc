@@ -3,7 +3,7 @@
   "description": "JSON RPC api package",
   "require": {
     "jeyroik/extas-api": "0.*",
-    "jeyroik/extas-http-jsonrpc": "0.1",
+    "jeyroik/extas-http-jsonrpc": "0.*",
     "jeyroik/extas-operations-jsonrpc": "1.*"
   },
   "require-dev": {

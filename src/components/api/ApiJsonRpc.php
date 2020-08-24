@@ -152,7 +152,7 @@ class ApiJsonRpc extends Item implements IApiJsonRpc
         ]);
 
         if (!$operation) {
-            throw new MissedOrUnknown('json rpc operation "' . $name . '"');
+            throw new MissedOrUnknown('json rpc operation "' . $name . '"', 404);
         }
 
         return $operation;
