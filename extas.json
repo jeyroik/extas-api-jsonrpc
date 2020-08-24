@@ -1,0 +1,49 @@
+{
+  "name": "extas/api-jsonrpc",
+  "plugins": [
+    {
+      "class": "extas\\components\\plugins\\api\\PluginJsonRpcApi",
+      "stage": "extas.api.app.init",
+      "install_on": "install"
+    },
+    {
+      "class": "extas\\components\\plugins\\api\\PluginJsonRpcDescribe",
+      "stage": "extas.api.app.init",
+      "install_on": "install"
+    },
+    {
+      "class": "extas\\components\\plugins\\api\\PluginJsonRpcMetrics",
+      "stage": "extas.api.app.init",
+      "install_on": "install"
+    },
+    {
+      "class": "extas\\components\\plugins\\api\\PluginJsonRpcProbeLiveness",
+      "stage": "extas.api.app.init",
+      "install_on": "install"
+    },
+    {
+      "class": "extas\\components\\plugins\\api\\PluginJsonRpcProbeReadiness",
+      "stage": "extas.api.app.init",
+      "install_on": "install"
+    },
+    {
+      "class": "extas\\components\\plugins\\jsonrpc\\ApiJsonRpc",
+      "stage": "extas.jsonrpc.operation.run.api/jsonrpc",
+      "install_on": "install"
+    },
+    {
+      "class": "extas\\components\\plugins\\jsonrpc\\Describe",
+      "stage": "extas.jsonrpc.operation.run._describe",
+      "install_on": "install"
+    }
+  ],
+  "jsonrpc_operations": [
+    {
+      "name": "jsonrpc.operations.index",
+      "title": "JSON RPC operations",
+      "description": "JSON RPC operations list",
+      "class": "",
+      "version": 0
+    }
+  ]
+}
