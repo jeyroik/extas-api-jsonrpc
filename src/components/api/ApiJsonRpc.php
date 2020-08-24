@@ -107,7 +107,7 @@ class ApiJsonRpc extends Item implements IApiJsonRpc
             $this->setPsrResponse($response);
         }
 
-        return $response;
+        return $this->getPsrResponse();
     }
 
     /**

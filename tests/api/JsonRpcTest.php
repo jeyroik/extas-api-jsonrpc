@@ -14,6 +14,7 @@ use extas\components\plugins\init\InitItem;
 use extas\components\plugins\init\InitSection;
 use extas\components\plugins\install\InstallItem;
 use extas\components\plugins\install\InstallPackage;
+use extas\components\plugins\jsonrpc\ApiJsonRpc;
 use extas\components\plugins\TSnuffPlugins;
 use extas\components\protocols\Protocol;
 use extas\components\protocols\ProtocolRepository;
@@ -84,6 +85,8 @@ class JsonRpcTest extends TestCase
            ]
         );
 
+        $this->assertNotEmpty($response, 'Missed response');
+
         $jsonRpcResponse = $this->getJsonRpcResponse($response);
         $this->assertEquals(
            [
@@ -106,6 +109,7 @@ class JsonRpcTest extends TestCase
     protected function installPackage($cOutput): void
     {
         $this->createSnuffPlugin(PluginJsonRpcApi::class, ['extas.api.app.init']);
+        $this->createSnuffPlugin(ApiJsonRpc::class, ['extas.jsonrpc.operation.run.api/jsonrpc']);
         $this->getMagicClass('jsonRpcOperations')->create(new JsonRpcOperation([
             JsonRpcOperation::FIELD__NAME => 'jsonrpc.operation.index',
             JsonRpcOperation::FIELD__CLASS => JsonRpcOperationsIndex::class,
