@@ -31,24 +31,4 @@ abstract class OperationRunner extends OperationDispatcher
 
         return $this->run();
     }
-
-    /**
-     * @return string[]
-     */
-    protected function run(): array
-    {
-        return ['notice' => 'please, override run() method in the "' . get_class($this) . '"'];
-    }
-
-    /**
-     * @return IRepository
-     */
-    protected function getItemRepo(): IRepository
-    {
-        /**
-         * @var IJsonRpcOperation $operation
-         */
-        $operation = $this->getOperation();
-        return $operation->getItemRepository();
-    }
 }
