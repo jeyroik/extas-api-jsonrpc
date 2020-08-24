@@ -13,3 +13,23 @@ Extas-совместимый JSON RPC сервер.
 
 # Использование
 
+## Создание операций
+
+Операции создаются с помощью пакета `extas-operations-jsonrpc`:
+
+`extas.json`
+
+```json
+{
+  "jsonrpc_operations": [
+    {
+      "name": "jsonrpc.operation.index",
+      "...": "the rest operation fields"
+    }
+  ]
+}
+```
+
+## Запуск сервера
+
+`# php -S 0.0.0.0:8080 -t vendor/jeyroik/extas-api/public`
