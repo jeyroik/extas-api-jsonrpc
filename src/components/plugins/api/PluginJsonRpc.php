@@ -7,6 +7,7 @@ use extas\interfaces\api\IApiJsonRpc;
 use extas\interfaces\stages\IStageApiAppInit;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\App;
 
 /**
  * Class PluginJsonRpc
@@ -14,8 +15,29 @@ use Psr\Http\Message\ResponseInterface;
  * @package extas\components\plugins\api
  * @author jeyroik <jeyroik@gmail.com>
  */
-abstract class PluginJsonRpc extends Plugin implements IStageApiAppInit
+class PluginJsonRpc extends Plugin implements IStageApiAppInit
 {
+    public const PARAM__PATTERN = 'pattern';
+    public const PARAM__ENDPOINT = 'endpoint';
+
+    /**
+     * @param App $app
+     */
+    public function __invoke(App &$app): void
+    {
+        $app->post(
+            $this->getParameterValue(static::PARAM__PATTERN),
+            function (RequestInterface $request, ResponseInterface $response, array $args) {
+                return static::getApi(
+                    $request,
+                    $response,
+                    $this->getParameterValue(static::PARAM__ENDPOINT),
+                    $args
+                )->dispatch();
+            }
+        );
+    }
+
     /**
      * @param RequestInterface $request
      * @param ResponseInterface $response

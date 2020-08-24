@@ -9,6 +9,7 @@ use extas\components\items\SnuffItem;
 use extas\components\operations\JsonRpcOperation;
 use extas\components\packages\Initializer;
 use extas\components\packages\Installer;
+use extas\components\plugins\api\PluginJsonRpc;
 use extas\components\plugins\api\PluginJsonRpcApi;
 use extas\components\plugins\api\PluginJsonRpcDescribe;
 use extas\components\plugins\init\Init;
@@ -18,11 +19,13 @@ use extas\components\plugins\install\InstallItem;
 use extas\components\plugins\install\InstallPackage;
 use extas\components\plugins\jsonrpc\ApiJsonRpc;
 use extas\components\plugins\jsonrpc\Describe;
+use extas\components\plugins\Plugin;
 use extas\components\plugins\TSnuffPlugins;
 use extas\components\protocols\Protocol;
 use extas\components\protocols\ProtocolRepository;
 use extas\components\repositories\TSnuffRepositoryDynamic;
 use extas\components\THasMagicClass;
+use extas\interfaces\samples\parameters\ISampleParameter;
 use extas\interfaces\stages\IStageAfterJsonRpcOperation;
 use extas\interfaces\stages\IStageBeforeJsonRpcOperation;
 use PHPUnit\Framework\TestCase;
@@ -271,8 +274,35 @@ class JsonRpcTest extends TestCase
 
     protected function installPackage(): void
     {
-        $this->createSnuffPlugin(PluginJsonRpcApi::class, ['extas.api.app.init']);
-        $this->createSnuffPlugin(PluginJsonRpcDescribe::class, ['extas.api.app.init']);
+        $this->createWithSnuffRepo('pluginRepository', new Plugin([
+            Plugin::FIELD__CLASS => PluginJsonRpc::class,
+            Plugin::FIELD__STAGE => 'extas.api.app.init',
+            Plugin::FIELD__PARAMETERS => [
+                PluginJsonRpc::PARAM__PATTERN => [
+                    ISampleParameter::FIELD__NAME => PluginJsonRpc::PARAM__PATTERN,
+                    ISampleParameter::FIELD__VALUE => '/api/jsonrpc[/{version}]'
+                ],
+                PluginJsonRpc::PARAM__ENDPOINT => [
+                    ISampleParameter::FIELD__NAME => PluginJsonRpc::PARAM__ENDPOINT,
+                    ISampleParameter::FIELD__VALUE => 'api/jsonrpc'
+                ]
+            ]
+        ]));
+
+        $this->createWithSnuffRepo('pluginRepository', new Plugin([
+            Plugin::FIELD__CLASS => PluginJsonRpc::class,
+            Plugin::FIELD__STAGE => 'extas.api.app.init',
+            Plugin::FIELD__PARAMETERS => [
+                PluginJsonRpc::PARAM__PATTERN => [
+                    ISampleParameter::FIELD__NAME => PluginJsonRpc::PARAM__PATTERN,
+                    ISampleParameter::FIELD__VALUE => '/_describe[/{version}]'
+                ],
+                PluginJsonRpc::PARAM__ENDPOINT => [
+                    ISampleParameter::FIELD__NAME => PluginJsonRpc::PARAM__ENDPOINT,
+                    ISampleParameter::FIELD__VALUE => '_describe'
+                ]
+            ]
+        ]));
 
         $this->createSnuffPlugin(ApiJsonRpc::class, ['extas.jsonrpc.operation.run.api/jsonrpc']);
         $this->createSnuffPlugin(Describe::class, ['extas.jsonrpc.operation.run._describe']);
