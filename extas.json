@@ -2,7 +2,7 @@
   "name": "extas/api-jsonrpc",
   "plugins": [
     {
-      "class": "extas\\components\\plugins\\api\\PluginJsonRpcApi",
+      "class": "extas\\components\\plugins\\api\\PluginJsonRpc",
       "stage": "extas.api.app.init",
       "install_on": "install",
       "parameters": {
