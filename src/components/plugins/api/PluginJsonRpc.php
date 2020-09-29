@@ -17,7 +17,16 @@ use Slim\App;
  */
 class PluginJsonRpc extends Plugin implements IStageApiAppInit
 {
+    public const PARAM__ROUTES = 'routes';
+
+    /**
+     * @deprecated
+     */
     public const PARAM__PATTERN = 'pattern';
+
+    /**
+     * @deprecated
+     */
     public const PARAM__ENDPOINT = 'endpoint';
 
     /**
@@ -25,17 +34,21 @@ class PluginJsonRpc extends Plugin implements IStageApiAppInit
      */
     public function __invoke(App &$app): void
     {
-        $app->post(
-            $this->getParameterValue(static::PARAM__PATTERN),
-            function (RequestInterface $request, ResponseInterface $response, array $args) {
-                return static::getApi(
-                    $request,
-                    $response,
-                    $this->getParameterValue(static::PARAM__ENDPOINT),
-                    $args
-                )->dispatch();
-            }
-        );
+        $routes = $this->getParameterValue(static::PARAM__ROUTES, []);
+
+        foreach ($routes as $pattern => $endpoint) {
+            $app->post(
+                $pattern,
+                function (RequestInterface $request, ResponseInterface $response, array $args) use ($endpoint) {
+                    return static::getApi(
+                        $request,
+                        $response,
+                        $endpoint,
+                        $args
+                    )->dispatch();
+                }
+            );
+        }
     }
 
     /**
