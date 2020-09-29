@@ -1,3 +1,7 @@
+# 0.1.2
+
+- #1 fix
+
 # 0.1.1
 
 - Plugin path in the extas.json fixed.

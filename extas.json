@@ -6,73 +6,16 @@
       "stage": "extas.api.app.init",
       "install_on": "install",
       "parameters": {
-        "pattern": {
+        "routes": {
           "name": "pattern",
-          "value": "/api/jsonrpc[/{version}]"
-        },
-        "endpoint": {
-          "name": "endpoint",
-          "value": "api/jsonrpc"
-        }
-      }
-    },
-    {
-      "class": "extas\\components\\plugins\\api\\PluginJsonRpcDescribe",
-      "stage": "extas.api.app.init",
-      "install_on": "install",
-      "parameters": {
-        "pattern": {
-          "name": "pattern",
-          "value": "/_describe[/{version}]"
-        },
-        "endpoint": {
-          "name": "endpoint",
-          "value": "_describe"
-        }
-      }
-    },
-    {
-      "class": "extas\\components\\plugins\\api\\PluginJsonRpcMetrics",
-      "stage": "extas.api.app.init",
-      "install_on": "install",
-      "parameters": {
-        "pattern": {
-          "name": "pattern",
-          "value": "/metrics[/{version}]"
-        },
-        "endpoint": {
-          "name": "endpoint",
-          "value": "metrics"
-        }
-      }
-    },
-    {
-      "class": "extas\\components\\plugins\\api\\PluginJsonRpcProbeLiveness",
-      "stage": "extas.api.app.init",
-      "install_on": "install",
-      "parameters": {
-        "pattern": {
-          "name": "pattern",
-          "value": "/probe/liveness[/{version}]"
-        },
-        "endpoint": {
-          "name": "endpoint",
-          "value": "probe/liveness"
-        }
-      }
-    },
-    {
-      "class": "extas\\components\\plugins\\api\\PluginJsonRpcProbeReadiness",
-      "stage": "extas.api.app.init",
-      "install_on": "install",
-      "parameters": {
-        "pattern": {
-          "name": "pattern",
-          "value": "/probe/readiness[/{version}]"
-        },
-        "endpoint": {
-          "name": "endpoint",
-          "value": "probe/readiness"
+          "value": {
+            "/api/jsonrpc[/{version}]": "api/jsonrpc",
+            "/_describe[/{version}]": "_describe",
+            "/specs[/{version}]": "_describe",
+            "/metrics[/{version}]": "metrics",
+            "/probe/liveness[/{version}]": "probe/liveness",
+            "/probe/readiness[/{version}]": "probe/readiness"
+          }
         }
       }
     },

@@ -278,28 +278,12 @@ class JsonRpcTest extends TestCase
             Plugin::FIELD__CLASS => PluginJsonRpc::class,
             Plugin::FIELD__STAGE => 'extas.api.app.init',
             Plugin::FIELD__PARAMETERS => [
-                PluginJsonRpc::PARAM__PATTERN => [
+                PluginJsonRpc::PARAM__ROUTES => [
                     ISampleParameter::FIELD__NAME => PluginJsonRpc::PARAM__PATTERN,
-                    ISampleParameter::FIELD__VALUE => '/api/jsonrpc[/{version}]'
-                ],
-                PluginJsonRpc::PARAM__ENDPOINT => [
-                    ISampleParameter::FIELD__NAME => PluginJsonRpc::PARAM__ENDPOINT,
-                    ISampleParameter::FIELD__VALUE => 'api/jsonrpc'
-                ]
-            ]
-        ]));
-
-        $this->createWithSnuffRepo('pluginRepository', new Plugin([
-            Plugin::FIELD__CLASS => PluginJsonRpc::class,
-            Plugin::FIELD__STAGE => 'extas.api.app.init',
-            Plugin::FIELD__PARAMETERS => [
-                PluginJsonRpc::PARAM__PATTERN => [
-                    ISampleParameter::FIELD__NAME => PluginJsonRpc::PARAM__PATTERN,
-                    ISampleParameter::FIELD__VALUE => '/_describe[/{version}]'
-                ],
-                PluginJsonRpc::PARAM__ENDPOINT => [
-                    ISampleParameter::FIELD__NAME => PluginJsonRpc::PARAM__ENDPOINT,
-                    ISampleParameter::FIELD__VALUE => '_describe'
+                    ISampleParameter::FIELD__VALUE => [
+                        '/api/jsonrpc[/{version}]' => 'api/jsonrpc',
+                        '/_describe[/{version}]' => '_describe'
+                    ]
                 ]
             ]
         ]));
