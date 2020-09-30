@@ -182,7 +182,7 @@ class JsonRpcTest extends TestCase
 
         $jsonRpcResponse = $this->getJsonRpcResponse($response);
         $this->assertEquals(
-            $this->getJsonRpcSuccess(['specs']),
+            $this->getJsonRpcSuccess(['jsonrpc.operation.index' => ['specs']]),
             $jsonRpcResponse,
             'Current response: ' . print_r($jsonRpcResponse, true) . PHP_EOL
         );

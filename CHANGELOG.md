@@ -1,3 +1,7 @@
+# 0.1.4
+
+- Stage `extas.api.jsonrpc.describe` added.
+
 # 0.1.3
 
 - Mistypes fixes.
