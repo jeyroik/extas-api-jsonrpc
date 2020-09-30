@@ -1,3 +1,7 @@
+# 0.1.5
+
+- Operations without versions are describing now too.
+
 # 0.1.4
 
 - Stage `extas.api.jsonrpc.describe` added.

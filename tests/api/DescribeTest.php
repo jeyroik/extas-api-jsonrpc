@@ -45,7 +45,6 @@ class DescribeTest extends TestCase
                 'request' => [],
                 'response' => []
             ],
-            JsonRpcOperation::FILED__VERSION => 0,
             JsonRpcOperation::FIELD__NAME => 'test'
         ]));
     }

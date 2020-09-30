@@ -37,7 +37,7 @@ class Describe extends Plugin implements IStageJsonRpcOperationRun
         $all[] = static::OPERATION__ALL;
 
         $operations = in_array($operation->getName(), $all)
-            ? $this->jsonRpcOperations()->all([IJsonRpcOperation::FILED__VERSION => $this->getVersion()])
+            ? $this->jsonRpcOperations()->all([IJsonRpcOperation::FILED__VERSION => [$this->getVersion(), null]])
             : [$operation];
 
         $result = $this->extractOperationsSpecs($operations);
