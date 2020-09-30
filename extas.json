@@ -7,11 +7,10 @@
       "install_on": "install",
       "parameters": {
         "routes": {
-          "name": "pattern",
+          "name": "routes",
           "value": {
             "/api/jsonrpc[/{version}]": "api/jsonrpc",
             "/_describe[/{version}]": "_describe",
-            "/specs[/{version}]": "_describe",
             "/metrics[/{version}]": "metrics",
             "/probe/liveness[/{version}]": "probe/liveness",
             "/probe/readiness[/{version}]": "probe/readiness"
@@ -35,8 +34,29 @@
       "name": "jsonrpc.operations.index",
       "title": "JSON RPC operations",
       "description": "JSON RPC operations list",
-      "class": "",
+      "class": "extas\\components\\operations\\jsonrpc\\Index",
       "version": 0
+    },
+    {
+      "name": "specs.operations",
+      "title": "JSON RPC operations",
+      "description": "JSON RPC operations list",
+      "class": "extas\\components\\operations\\jsonrpc\\Index",
+      "version": 0,
+      "specs": {
+        "request": {
+          "properties": {
+            "method": {
+              "type": "string"
+            }
+          }
+        },
+        "response": {
+          "properties": {
+            "type": "object"
+          }
+        }
+      }
     }
   ]
 }
