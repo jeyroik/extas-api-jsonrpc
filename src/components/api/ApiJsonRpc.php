@@ -148,7 +148,7 @@ class ApiJsonRpc extends Item implements IApiJsonRpc
         $version = $args[IJsonRpcOperation::FILED__VERSION] ?? 0;
         $operation = $this->jsonRpcOperations()->one([
             IJsonRpcOperation::FIELD__NAME => $name,
-            IJsonRpcOperation::FILED__VERSION => $version
+            IJsonRpcOperation::FILED__VERSION => [$version, null]
         ]);
 
         if (!$operation) {
