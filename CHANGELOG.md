@@ -1,3 +1,7 @@
+# 0.1.6
+
+- Operations without version are allowed.
+
 # 0.1.5
 
 - Operations without versions are describing now too.
